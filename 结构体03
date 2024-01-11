@@ -1,0 +1,91 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<string.h>
+#include<errno.h>
+#include<windows.h>
+#include<stdlib.h>
+#include<stdio.h>
+#define Cs 1
+#define Ct 1
+
+typedef struct Stu
+{
+	char name[10];
+	char xuhao[10];
+	char sex[5];
+	char zhiye[10];
+	char banji[5];
+}Stu;
+typedef struct Tch
+{
+	char name[10];
+	char zhigonghao[10];
+	char sex[5];
+	char zhiye[10];
+	char banji[5];
+	char zhiwu[10];
+}Tch;
+typedef struct Dat
+{
+	Stu* a;
+	Tch* b;
+	int sza;
+	int szb;
+}Dat;
+int main()
+{
+	Dat con;
+	int i = 0;
+	con.sza = 0;
+	con.szb = 0;
+	con.a = (Stu*)malloc(Cs * sizeof(struct Stu));
+	if (con.a == NULL)
+	{
+		printf("Stu:%s\n", strerror(errno));
+	}
+	con.b = (Tch*)malloc(Ct * sizeof(struct Tch));
+	if (con.a == NULL)
+	{
+		printf("Tch:%s\n", strerror(errno));
+	}
+	for (i = 0; i < Cs; i++)
+	{
+		scanf("%s", con.a[i].name);
+		scanf("%s", con.a[i].xuhao);
+		scanf("%s", con.a[i].sex);
+		scanf("%s", con.a[i].zhiye);
+		scanf("%s", con.a[i].banji);
+	}
+	for (i = 0; i < Ct; i++)
+	{
+		scanf("%s", con.b[i].name);
+		scanf("%s", con.b[i].zhigonghao);
+		scanf("%s", con.b[i].sex);
+		scanf("%s", con.b[i].zhiye);
+		scanf("%s", con.b[i].banji);
+		scanf("%s", con.b[i].zhiwu);
+	}
+	for (i = 0; i < Cs; i++)
+	{
+		printf("%d号学生", i + 1);
+		printf("%s\n", con.a[i].name);
+		printf("%s\n", con.a[i].xuhao);
+		printf("%s\n", con.a[i].sex);
+		printf("%s\n", con.a[i].zhiye);
+		printf("%s\n", con.a[i].banji);
+	}
+	for (i = 0; i < Ct; i++)
+	{
+		printf("%d号教师", i + 1);
+		printf("%s\n", con.b[i].name);
+		printf("%s\n", con.b[i].zhigonghao);
+		printf("%s\n", con.b[i].sex);
+		printf("%s\n", con.b[i].zhiye);
+		printf("%s\n", con.b[i].banji);
+		printf("%s\n", con.b[i].zhiwu);
+	}
+	free(con.a);
+	con.a = NULL;
+	free(con.b);
+	con.b = NULL;
+	return 0;
+}
